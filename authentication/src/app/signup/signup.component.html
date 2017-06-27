@@ -1,0 +1,9 @@
+  <div class="wrapper">
+    <form #formData='ngForm' class="form-signin" (ngSubmit)="onSubmit($event, formData)">
+      <input type="text" class="form-control" name="name" (ngModel)="name" placeholder="Name" autofocus="" />
+      <input type="text" class="form-control" name="username" (ngModel)="username" placeholder="Username" autofocus="" />
+      <input type="email" class="form-control" name="email" (ngModel)="email" placeholder="Email Address" autofocus="" />
+      <input type="password" class="form-control" name="password" (ngModel)="password" placeholder="Password"/>      
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button>   
+    </form>
+  </div>
