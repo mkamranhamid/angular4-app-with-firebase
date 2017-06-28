@@ -1,0 +1,14 @@
+  <div class="wrapper">
+    <div class="form-signin">
+      <form #formData='ngForm' class="form-only" (ngSubmit)="onLogin($event, formData)">
+        <input type="text" class="form-control" name="email" placeholder="Email Address" (ngModel)="email" autofocus="" />
+        <input type="password" class="form-control" name="password" placeholder="Password" (ngModel)="password" />      
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        
+      </form>
+      <button class="btn btn-lg btn-primary btn-block gapper" (click)="loginWithGoogle()">Login With Google</button>
+    </div>
+  </div>

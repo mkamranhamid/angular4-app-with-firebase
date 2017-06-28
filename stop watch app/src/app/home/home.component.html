@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-4"><span class="mainHead">All Timers</span></div>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Duration</th>
+        <th>Stop After</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let item of timers | async">
+          <td>{{ item.name }}</td>
+          <td>{{ item.start }}</td>
+          <td>{{ item.end  }}</td>
+          <td>{{ item.duration }}</td>
+          <td>{{ item.stopWatch }}</td>
+          <td><button class="btn btn-sm btn-secondary btn-block">{{ item.action ? 'End':'Start' }}</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <!--<div> {{ allTimers?(allTimers| async | json):'not timers added' }} </div>-->
+  <!--<li *ngFor="let item of timers | async">
+    <span>{{item.name}}</span>
+    <span>{{item.start}}</span>
+    <span>{{item.end}}</span>
+    <span>{{item.duration}}</span>
+    <span>{{item.stopWatch}}</span>
+    <span>{{item.action ? 'End':'Start' }}</span>
+  </li>-->
+  <!--
+  <tr *ngFor="let item of timers | async">
+        <td>{{ item.name }}</td>
+        <td>{{ item.start }}</td>
+        <td>{{ item.end  }}</td>
+        <td>{{ item.duration }}</td>
+        <td>{{ item.stopWatch }}</td>
+        <td><button class="btn btn-sm btn-secondary btn-block">{{ item.action ? 'End':'Start' }}</button></td>
+      </tr>
+-->
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-4"><span class="mainHead">Create Timer</span></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" name="name" placeholder="Timer Name" #timerName autofocus="" />
+      <button class="btn btn-lg btn-secondary btn-block gapper" (click)="createTimer(timerName.value)">Create</button>
+    </div>
+  </div>
+
+</div>
