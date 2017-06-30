@@ -15,9 +15,10 @@ export class HomeComponent implements OnInit {
   timers: FirebaseListObservable<any>;
   constructor(private afService: AF, private router: Router, db: AngularFireDatabase) { 
     // this.allTimers = afService.timers;
-    // this.timers = db.list(`/timers/${afService.authState.uid}`);
-    this.timers = db.list(`/timers/`);
-    console.log('this.allTimers ',this.allTimers);
+    let uid = localStorage.uid;
+    this.timers = db.list(`/timers/${uid}`);
+    // this.timers = db.list(`/timers/`);
+    console.log('this.allTimers ',this.timers);
   }
 
   ngOnInit() {
