@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+
+import { AF } from "../providers/af";
 
 @Component({
   selector: 'app-header',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() {
+  constructor(private afService: AF, private router: Router) {
     if(localStorage.uid){
       console.log('localStorage ',localStorage.uid);
     }
@@ -17,6 +20,11 @@ export class HeaderComponent implements OnInit {
     if(localStorage.uid){
       console.log('localStorage emmiter ',localStorage.uid);
     }
+  }
+  logout(){
+    this.afService.logout();
+    localStorage.removeItem('uid');
+    this.router.navigate(['login']);
   }
 
 }

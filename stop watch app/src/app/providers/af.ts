@@ -1,5 +1,8 @@
 import { Injectable } from "@angular/core";
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+
 import { Observable } from 'rxjs/Observable';
+
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseObjectFactoryOpts } from "angularfire2/interfaces";
@@ -16,7 +19,7 @@ export class AF {
   public user;
   public authState;
 
-  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
+  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private router: Router) {
     afAuth.authState.subscribe(
       (auth) => {
         if (auth != null) {

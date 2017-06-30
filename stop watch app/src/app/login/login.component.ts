@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
     this.afService.loginWithEmail(user.value).then((successfullyLoggedIn) => {
       if (successfullyLoggedIn) {
         console.log('successfullyLoggedIn ', successfullyLoggedIn)
+        localStorage.uid = successfullyLoggedIn.uid;
         this.router.navigate(['home']);
       }
     })

@@ -2,15 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+
 // firebase
 import { AngularFireModule } from 'angularfire2';
-
 // New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-// firebase ---------
+
 //provider
 import { AF } from './providers/af';
+import { AuthGuard } from './guard/auth.guard';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -21,10 +22,10 @@ import { CreateComponent } from './create/create.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: SignupComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'create', component: CreateComponent }
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: 'create', component: CreateComponent, canActivate: [AuthGuard] }
 ];
 
 export const firebaseConfig = {
@@ -56,7 +57,10 @@ export const firebaseConfig = {
     AngularFireAuthModule
 
   ],
-  providers: [AF],
+  providers: [
+    AF,
+    AuthGuard,
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
