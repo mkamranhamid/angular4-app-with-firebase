@@ -64,14 +64,14 @@ export class AF {
   }
 
   updateTimerObject(props){
-    const itemObservable = this.db.object(`/timers/${this.authState.uid}/props.$id`);
+    const itemObservable = this.db.object(`/timers/${this.authState.uid}/${props.$key}`);
     return itemObservable.update(props);
 
     // toUpdate[props] = 
   }
 
-  getAllUserTimers() {
-    return this.timers
+  getAllUserTimers(uid) {
+    return this.db.list(`/timers/${uid}`)
   }
 
   /**
@@ -85,9 +85,10 @@ export class AF {
    *
    */
   addTimerToDb(name) {
-    var timerObj = {
+    let timerObj = {
       name: name,
       start: '-',
+      duration:'0:0:0',
       end: '-',
       action: false,
       stopWatch: '-'

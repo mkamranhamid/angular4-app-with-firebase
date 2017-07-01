@@ -10,18 +10,18 @@
         <th>Start Time</th>
         <th>End Time</th>
         <th>Duration</th>
-        <th>Stop After</th>
+        <!--<th>Stop After</th>-->
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
-       <tr *ngFor="let item of timers | async">
+       <tr *ngFor="let item of timers; let i=index">
           <td>{{ item.name }}</td>
           <td>{{ item.start }}</td>
           <td>{{ item.end  }}</td>
           <td>{{ item.duration }}</td>
-          <td>{{ item.stopWatch }}</td>
-          <td><button class="btn btn-sm btn-secondary btn-block">{{ item.action ? 'End':'Start' }}</button></td>
+          <!--<td>{{ item.stopWatch }}</td>-->
+          <td><button class="btn btn-sm btn-secondary btn-block" [ngClass]="{'disabled': item.disabled }" (click)="doAction(item, i)">{{ item.action ? 'End':'Start' }}</button></td>
       </tr>
     </tbody>
   </table>

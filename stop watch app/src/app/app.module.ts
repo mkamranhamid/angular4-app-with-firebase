@@ -21,7 +21,7 @@ import { HomeComponent } from './home/home.component';
 import { CreateComponent } from './create/create.component';
 
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: SignupComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
