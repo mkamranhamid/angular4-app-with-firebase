@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -18,10 +19,13 @@ export class AF {
   public email: string;
   public user;
   public authState;
+  _authState: Subject<any> = new Subject();
 
   constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private router: Router) {
     afAuth.authState.subscribe(
       (auth) => {
+        this._authState.next(auth);
+        console.log("AUTH ::: ", auth)
         if (auth != null) {
           this.authState = auth;
           this.timers = this.db.list(`/timers/${auth.uid}`);
@@ -63,7 +67,7 @@ export class AF {
       });
   }
 
-  updateTimerObject(props){
+  updateTimerObject(props) {
     const itemObservable = this.db.object(`/timers/${this.authState.uid}/${props.$key}`);
     return itemObservable.update(props);
 
@@ -88,7 +92,7 @@ export class AF {
     let timerObj = {
       name: name,
       start: '-',
-      duration:'0:0:0',
+      duration: '0:0:0',
       end: '-',
       action: false,
       stopWatch: '-'

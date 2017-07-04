@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-
+import { ISubscription } from 'rxjs/Subscription';
 import { AF } from "../providers/af";
 
 @Component({
@@ -9,22 +9,23 @@ import { AF } from "../providers/af";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  isAuthenticated: boolean = false;
+  subscription: ISubscription;
 
   constructor(private afService: AF, private router: Router) {
-    if(localStorage.uid){
-      console.log('localStorage ',localStorage.uid);
-    }
-   }
+  }
 
   ngOnInit() {
-    if(localStorage.uid){
-      console.log('localStorage emmiter ',localStorage.uid);
-    }
+    this.subscription = this.afService._authState.subscribe(auth => auth ? this.isAuthenticated = true : this.isAuthenticated = false);
   }
-  logout(){
+  logout() {
     this.afService.logout();
     localStorage.removeItem('uid');
     this.router.navigate(['login']);
+  }
+
+  ngOnDestroy() {
+    this.subscription ? this.subscription.unsubscribe() : '';
   }
 
 }
