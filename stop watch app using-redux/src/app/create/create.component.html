@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-4"><span class="mainHead">Create Timer</span></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" (keypress)="makeErrorDisappear()" name="name" placeholder="Timer Name" #timerName
+        autofocus="" />
+        {{_name}}
+      <div class="alert alert-danger" *ngIf="error">
+        <strong>ERROR!</strong> Please Enter a correct name.
+      </div>
+      <!--<input type="time" value="22:53:05" class="form-control" name="stopWatch" placeholder="When to Stop" #timerStop autofocus="" />-->
+      <button class="btn btn-lg btn-secondary btn-block gapper" (click)="createTimer(timerName.value)">Create</button>
+    </div>
+  </div>
+
+</div>
